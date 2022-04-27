@@ -1,7 +1,7 @@
 {
   "name": "Documentation",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "Cross-metaverse wearables",
   "main": "index.js",
   "scripts": {
     "dev": "gatsby develop",
