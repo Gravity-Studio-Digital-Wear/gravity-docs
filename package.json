@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "gatsby develop",
-    "build": "gatsby build",
-    "serve": "gatsby serve",
+    "build": "gatsby build --prefix-paths",
+    "serve": "gatsby serve --prefix-paths",
     "clean": "gatsby clean"
   },
   "author": "",

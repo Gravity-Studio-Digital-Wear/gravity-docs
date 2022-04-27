@@ -6,8 +6,8 @@ export default {
     },
     logo: {
       src: {
-        light: '/gravity-logo-dark.svg',
-        dark: '/gravity-logo-light.svg',
+        light: 'gravity-logo-dark.svg',
+        dark: 'gravity-logo-light.svg',
       },
       width: 200,
     },
