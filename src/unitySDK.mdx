@@ -1,0 +1,59 @@
+---
+name: Unity SDK
+route: /unity-sdk
+---
+
+# Unity SDK
+
+In order to show wearables in a game (scene) you need to do the next steps.
+
+1. Connect to a user’s Metamask wallet on Polygon chain.
+
+2. Authorize a user.
+
+3. Fetch a user’s wearables
+
+4. Equip selected wearable.
+
+## Connection to Metamask
+
+To connect to Metamask wallet, call `Web3Connect()` method from `Assets/Plugins/Web3Unity/Scripts/Scenes/WebLogin.cs`.
+
+After successful logging in the user’s address will be available at `PlayerPrefs.GetString("Account")`.
+
+See `Assets/Plugins/Web3Unity/Scenes/WebLogin.unity` scene as an example.
+
+## Authorization
+
+To authorize and connect to the GTS API create a new `Connection` class from `GravityTS.Utils` namespace.
+
+```GTSConnection = new Connection(_apiUrl, _account);```
+
+where \
+`_apiUrl` is a link to GTS API,
+`_account` is a user's wallet address (Polygon).
+
+Whenever you decide to authorize a user, call the method `EstablishConnection()`. It will ask the user to sign a message via Metamask and if successful save an authorization token for further requests.
+
+See `GravitySDK` game object and attached `GTSManager.cs` script in `Assets/Plugins/GravityTS/Example/Scenes/ExampleGravitySDK.unity` scene as an example.
+
+## Fetching wearables
+
+To be able to fetch user's wearables, create a new `Wardrobe` class from `GravityTS.Wearables` namespace.
+
+```Wardrobe = new Wardrobe(GTSConnection);```
+
+where \
+`GTSConnection` is an `Connection` object created earlier.
+
+To fetch wearables call `FetchWearables()` method. It will fill in the public variable `List<Wearable> Wearables`.
+
+See `FetchGTSWearables()` method in `Assets/Plugins/GravityTS/Example/Scripts/CustomizedInventory.cs` script in `Assets/Plugins/GravityTS/Example/Scenes/ExampleGravitySDK.unity` scene as an example.
+
+## Equipping wearables
+
+To equip a wearable call `DownloadAvatar()` method for the desired `Wearable` item from the list `Wearables` in the `Wardrobe` object created earlier.
+
+You can subscribe to the event `OnDownloadAvatarFinished` to react after downloading is finished.
+
+See `Avatar Manager` game object and attached `AvatarManager.cs` script in `Assets/Plugins/GravityTS/Example/Scenes/ExampleGravitySDK.unity` scene as an example.
