@@ -15,6 +15,10 @@ In order to show wearables in a game (scene) you need to do the next steps.
 
 4. Equip selected wearable.
 
+Flow scheme:
+
+<img src="UnityGravitySDKScheme.png" alt="Flow scheme" />
+
 ## Connection to Metamask
 
 To connect to Metamask wallet, call `Web3Connect()` method from `Assets/Plugins/Web3Unity/Scripts/Scenes/WebLogin.cs`.
@@ -29,8 +33,8 @@ To authorize and connect to the GTS API create a new `Connection` class from `Gr
 
 ```GTSConnection = new Connection(_apiUrl, _account);```
 
-where \
-`_apiUrl` is a link to GTS API,
+where<br/>
+`_apiUrl` is a link to GTS API,<br/>
 `_account` is a user's wallet address (Polygon).
 
 Whenever you decide to authorize a user, call the method `EstablishConnection()`. It will ask the user to sign a message via Metamask and if successful save an authorization token for further requests.
