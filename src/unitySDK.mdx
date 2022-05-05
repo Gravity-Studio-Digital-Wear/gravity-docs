@@ -9,9 +9,9 @@ In order to show wearables in a game (scene) you need to do the next steps.
 
 1. Connect to a user’s Metamask wallet on Polygon chain.
 
-2. Authorize a user.
+2. Authorize a user in Gravity API.
 
-3. Fetch a user’s wearables
+3. Fetch user’s wearables
 
 4. Equip selected wearable.
 
@@ -21,21 +21,22 @@ Flow scheme:
 
 ## Connection to Metamask
 
-To connect to Metamask wallet, call `Web3Connect()` method from `Assets/Plugins/Web3Unity/Scripts/Scenes/WebLogin.cs`.
+To connect to a Metamask wallet, call `Web3Connect()` method from `Assets/Plugins/GravityTS/Example/Scripts/WebLogin.cs`.
 
 After successful logging in the user’s address will be available at `PlayerPrefs.GetString("Account")`.
 
-See `Assets/Plugins/Web3Unity/Scenes/WebLogin.unity` scene as an example.
+See `Assets/Plugins/GravityTS/Example/Scenes/WebLogin.unity` scene as an example.
 
 ## Authorization
 
-To authorize and connect to the GTS API create a new `Connection` class from `GravityTS.Utils` namespace.
+To authorize and connect to the Gravity API create a new `Connection` class from `GravityTS.Utils` namespace.
 
-```GTSConnection = new Connection(_apiUrl, _account);```
+```GTSConnection = new Connection(_apiUrl, _account, Web3GL.Sign);```
 
 where<br/>
-`_apiUrl` is a link to GTS API,<br/>
-`_account` is a user's wallet address (Polygon).
+`_apiUrl` is a link to Gravity API,<br/>
+`_account` is a user's wallet address (Polygon),<br/>
+`Web3GL.Sign` is a `Func<string, Task<string>>`, which signs messages.
 
 Whenever you decide to authorize a user, call the method `EstablishConnection()`. It will ask the user to sign a message via Metamask and if successful save an authorization token for further requests.
 
@@ -47,7 +48,7 @@ To be able to fetch user's wearables, create a new `Wardrobe` class from `Gravit
 
 ```Wardrobe = new Wardrobe(GTSConnection);```
 
-where \
+where<br/>
 `GTSConnection` is an `Connection` object created earlier.
 
 To fetch wearables call `FetchWearables()` method. It will fill in the public variable `List<Wearable> Wearables`.
