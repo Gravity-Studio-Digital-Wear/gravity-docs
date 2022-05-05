@@ -31,11 +31,12 @@ See `Assets/Plugins/GravityTS/Example/Scenes/WebLogin.unity` scene as an example
 
 To authorize and connect to the Gravity API create a new `Connection` class from `GravityTS.Utils` namespace.
 
-```GTSConnection = new Connection(_apiUrl, _account);```
+```GTSConnection = new Connection(_apiUrl, _account, Web3GL.Sign);```
 
 where<br/>
 `_apiUrl` is a link to Gravity API,<br/>
-`_account` is a user's wallet address (Polygon).
+`_account` is a user's wallet address (Polygon),<br/>
+`Web3GL.Sign` is a `Func<string, Task<string>>`, which signs messages.
 
 Whenever you decide to authorize a user, call the method `EstablishConnection()`. It will ask the user to sign a message via Metamask and if successful save an authorization token for further requests.
 
