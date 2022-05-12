@@ -19,46 +19,36 @@ Flow scheme:
 
 <img src="UnityGravitySDKScheme.png" alt="Flow scheme" />
 
+A single entry point for Gravity SDK is the class `GravityLayerEntryPoint`.
+
 ## Connection to Metamask
 
-To connect to a Metamask wallet, call `Web3Connect()` method from `Assets/Plugins/GravityTS/Example/Scripts/WebLogin.cs`.
+To connect to a Metamask wallet, call `Web3Connect()` method from `Assets/Plugins/GravityLayer/Example/Scripts/WebLogin.cs`.
 
 After successful logging in the user’s address will be available at `PlayerPrefs.GetString("Account")`.
 
-See `Assets/Plugins/GravityTS/Example/Scenes/WebLogin.unity` scene as an example.
+See `Assets/Plugins/GravityLayer/Example/Scenes/WebLogin.unity` scene as an example.
 
 ## Authorization
 
-To authorize and connect to the Gravity API create a new `Connection` class from `GravityTS.Utils` namespace.
+The method `EstablishConnection()` from `Assets/Plugins/GravityLayer/CoreAsync/Utils/Connection.cs` authorizes users in Gravity API. 
 
-```GTSConnection = new Connection(_apiUrl, _account, Web3GL.Sign);```
+It will ask the user to sign a message via Metamask and if successful save an authorization token for further requests.
 
-where<br/>
-`_apiUrl` is a link to Gravity API,<br/>
-`_account` is a user's wallet address (Polygon),<br/>
-`Web3GL.Sign` is a `Func<string, Task<string>>`, which signs messages.
-
-Whenever you decide to authorize a user, call the method `EstablishConnection()`. It will ask the user to sign a message via Metamask and if successful save an authorization token for further requests.
-
-See `GravitySDK` game object and attached `GTSManager.cs` script in `Assets/Plugins/GravityTS/Example/Scenes/ExampleGravitySDK.unity` scene as an example.
+See `GravitySDK` game object and attached `GLayerManager.cs` script in `Assets/Plugins/GravityLayer/Example/Scenes/ExampleGravitySDK.unity` scene as an example.
 
 ## Fetching wearables
 
-To be able to fetch user's wearables, create a new `Wardrobe` class from `GravityTS.Wearables` namespace.
+To fetch wearables call `FetchWearables()` method from `Assets/Plugins/GravityLayer/CoreAsync/Wearables/Wardrobe.cs`. 
 
-```Wardrobe = new Wardrobe(GTSConnection);```
+It will fill in the public variable `List<Wearable> Wearables`.
 
-where<br/>
-`GTSConnection` is an `Connection` object created earlier.
-
-To fetch wearables call `FetchWearables()` method. It will fill in the public variable `List<Wearable> Wearables`.
-
-See `FetchGTSWearables()` method in `Assets/Plugins/GravityTS/Example/Scripts/CustomizedInventory.cs` script in `Assets/Plugins/GravityTS/Example/Scenes/ExampleGravitySDK.unity` scene as an example.
+See `FetchGLayerWearables()` method in `Assets/Plugins/GravityLayer/Example/Scripts/CustomizedInventory.cs` script in `Assets/Plugins/GravityLayer/Example/Scenes/ExampleGravitySDK.unity` scene as an example.
 
 ## Equipping wearables
 
-To equip a wearable call `DownloadAvatar()` method for the desired `Wearable` item from the list `Wearables` in the `Wardrobe` object created earlier.
+To equip a wearable call `DownloadAvatar()` method for the desired `Wearable` item from the list `Wearables` in the `Wardrobe` object.
 
 You can subscribe to the event `OnDownloadAvatarFinished` to react after downloading is finished.
 
-See `Avatar Manager` game object and attached `AvatarManager.cs` script in `Assets/Plugins/GravityTS/Example/Scenes/ExampleGravitySDK.unity` scene as an example.
+See `Avatar Manager` game object and attached `AvatarManager.cs` script in `Assets/Plugins/GravityLayer/Example/Scenes/ExampleGravitySDK.unity` scene as an example.
