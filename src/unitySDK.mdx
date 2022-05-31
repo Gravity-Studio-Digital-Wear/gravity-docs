@@ -17,7 +17,7 @@ In order to show wearables in a game (scene) you need to do the next steps.
 
 Flow scheme:
 
-<img src="UnityGravitySDKScheme.png" alt="Flow scheme" />
+<img src="/UnityGravitySDKScheme.png" alt="Flow scheme" />
 
 A single entry point for Gravity SDK is the class `GravityLayerEntryPoint`.
 
@@ -27,15 +27,15 @@ To connect to a Metamask wallet, call `Web3Connect()` method from `Assets/Plugin
 
 After successful logging in the user’s address will be available at `PlayerPrefs.GetString("Account")`.
 
-See `Assets/Plugins/GravityLayer/Example/Scenes/WebLogin.unity` scene as an example.
+[Example](https://github.com/Gravity-Studio-Digital-Wear/UnitySDK-WebGL-example/blob/main/Plugins/GravityLayer/Example/Scripts/WebLogin.cs#L21). See `Assets/Plugins/GravityLayer/Example/Scenes/WebLogin.unity`.
 
 ## Authorization
 
 The method `EstablishConnection()` from `Assets/Plugins/GravityLayer/CoreAsync/Utils/Connection.cs` authorizes users in Gravity API. 
 
-It will ask the user to sign a message via Metamask and if successful save an authorization token for further requests.
+It asks the user to sign a message via Metamask and if successful saves an authorization token for further requests.
 
-See `GravitySDK` game object and attached `GLayerManager.cs` script in `Assets/Plugins/GravityLayer/Example/Scenes/ExampleGravitySDK.unity` scene as an example.
+[Example](https://github.com/Gravity-Studio-Digital-Wear/UnitySDK-WebGL-example/blob/main/Plugins/GravityLayer/Example/Scripts/GLayerManager.cs#L25). See `GravitySDK` game object and attached `GLayerManager.cs` script in `Assets/Plugins/GravityLayer/Example/Scenes/ExampleGravitySDK.unity` scene.
 
 ## Fetching wearables
 
@@ -43,12 +43,10 @@ To fetch wearables call `FetchWearables()` method from `Assets/Plugins/GravityLa
 
 It will fill in the public variable `List<Wearable> Wearables`.
 
-See `FetchGLayerWearables()` method in `Assets/Plugins/GravityLayer/Example/Scripts/CustomizedInventory.cs` script in `Assets/Plugins/GravityLayer/Example/Scenes/ExampleGravitySDK.unity` scene as an example.
+[Example](https://github.com/Gravity-Studio-Digital-Wear/UnitySDK-WebGL-example/blob/main/Plugins/GravityLayer/Example/Scripts/Inventory/CustomizedInventory.cs#L47). See `FetchGLayerWearables()` method in `Assets/Plugins/GravityLayer/Example/Scripts/CustomizedInventory.cs` script in `Assets/Plugins/GravityLayer/Example/Scenes/ExampleGravitySDK.unity` scene.
 
 ## Equipping wearables
 
-To equip a wearable call `DownloadAvatar()` method for the desired `Wearable` item from the list `Wearables` in the `Wardrobe` object.
+To equip a wearable call `DownloadAvatar()` method from the `Downloader` class.
 
-You can subscribe to the event `OnDownloadAvatarFinished` to react after downloading is finished.
-
-See `Avatar Manager` game object and attached `AvatarManager.cs` script in `Assets/Plugins/GravityLayer/Example/Scenes/ExampleGravitySDK.unity` scene as an example.
+[Example](https://github.com/Gravity-Studio-Digital-Wear/UnitySDK-WebGL-example/blob/main/Plugins/GravityLayer/Example/Scripts/Inventory/ItemWearable.cs#L23). See `DownloadAvatar()` method in `Assets/Plugins/GravityLayer/Example/Scripts/Inventory/ItemWearable.cs` script in `Assets/Plugins/GravityLayer/Example/Scenes/ExampleGravitySDK.unity` scene.
