@@ -1,0 +1,13 @@
+
+d:
+cd D:\GravityLayer\Docs\gravity-docs
+set NODE_OPTIONS=--openssl-legacy-provider
+npm run dev
+
+http://localhost:8000/
+
+
+d:
+cd D:\GravityLayer\docz-main\examples\basic
+set NODE_OPTIONS=--openssl-legacy-provider
+npm run dev
